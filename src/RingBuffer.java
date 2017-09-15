@@ -34,7 +34,7 @@ public class RingBuffer
         }
         else
             //System.out.println("enqueue ERROR: RingBuffer is full.\n" + toString());
-            System.out.print("");
+            System.out.print("enqueue ERROR: RingBuffer is full.");
 
     }
 
@@ -61,7 +61,7 @@ public class RingBuffer
         }
         else
         {
-            //System.out.println("dequeue ERROR: RingBuffer is empty.\n" + toString());
+            System.out.println("dequeue ERROR: RingBuffer is empty.");
             return 0;
         }
     }
@@ -87,7 +87,7 @@ public class RingBuffer
         }
         else
         {
-            //System.out.println("peek ERROR: RingBuffer is empty.\n" + toString());
+            System.out.println("peek ERROR: RingBuffer is empty.");
             return 0;
         }
     }
@@ -106,13 +106,29 @@ public class RingBuffer
     public String toString()
     {
         String output = "[";
+        int index = front;
+        for(int count = 0; count < size; count++)
+        {
+            output += arr[index];
+            if(count < size -1)
+                output += ", ";
+            else
+                output += "]";
+            index = incrementValue(index);
+        }
+        return output;
+    }
+
+    public String toStringTest()
+    {
+        String output = "[";
         for(int i = 0; i < arr.length; i++)
         {
             output += arr[i] + ", ";
         }
         output += "]";
 
-        output += "\nfront = " + front + "\nback = " + back + "\nsize = " + size + "\ncapacity = " + arr.length;
+        output += "\nfront = " + front + "\nback = " + back + "\nsize = " + size + "\ncapacity = " + arr.length + "\n";
 
         return output;
 
